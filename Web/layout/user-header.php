@@ -1,6 +1,6 @@
 <?php
-include_once dirname(__FILE__) . '/../define.php';
-include_once dirname(__FILE__) . '/../validateJWT.php';
+include_once  '/../define.php';
+include_once  '/../validateJWT.php';
 
 ?>
 <!DOCTYPE html>

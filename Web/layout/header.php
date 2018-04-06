@@ -1,4 +1,4 @@
-<?php include_once dirname(__FILE__) . '/../define.php'; ?>
+<?php include_once  '/../define.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
