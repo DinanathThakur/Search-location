@@ -1,5 +1,4 @@
 <?php
-include_once  'define.php';
 include_once  'validateJWT.php';
 
 ?>

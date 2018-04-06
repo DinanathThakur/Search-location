@@ -1,5 +1,8 @@
-<?php include_once  '/layout/header.php'; ?>
-    <link href="<?php echo BASE_URL ?>/assets/home-style.css" rel="stylesheet">
+<?php 
+include_once 'define.php';
+include_once LAYOUT_PATH . DIRECTORY_SEPARATOR . 'header.php';
+?>
+    <link href="<?php echo BASE_URL ?>assets/home-style.css" rel="stylesheet">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -161,4 +164,4 @@
 
     </script>
 
-<?php include_once  '/layout/footer.php'; ?>
+<?php include_once LAYOUT_PATH . DIRECTORY_SEPARATOR . 'footer.php';?>
