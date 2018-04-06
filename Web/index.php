@@ -1,4 +1,4 @@
-<?php include_once  'layout/header.php'; ?>
+<?php include_once  '/layout/header.php'; ?>
     <link href="<?php echo BASE_URL ?>/assets/home-style.css" rel="stylesheet">
     <div class="container">
         <div class="row">
@@ -21,7 +21,7 @@
                                 <form id="login-form" action="http://phpoll.com/login/process" method="post" role="form"
                                       style="display: block;">
                                     <div class="form-group">
-                                        <input type="text" name="email" tabindex="1"
+                                        <input type="email" name="email" tabindex="1"
                                                class="form-control" placeholder="Dmail-ID" value="" required="">
                                     </div>
                                     <div class="form-group">
@@ -161,4 +161,4 @@
 
     </script>
 
-<?php include_once  'layout/footer.php'; ?>
+<?php include_once  '/layout/footer.php'; ?>
