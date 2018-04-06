@@ -19,15 +19,16 @@ class Login extends Microservice
 
             $userResponse = $userObject->get(['where' => $where]);
 
-            if ($userResponse['status'] == 'success') {
+            if ($userResponse['status'] == 'success' && isset($userResponse['data']['userID'])) {
                 $userDetails = $userResponse['data'];
 
                 $jwt = $sessionObject->encodeJWT([
-                    'userID' => $userDetails['data'],
+                    'userID' => $userDetails['userID'],
                     'emailID' => $userDetails['email'],
                     'name' => $userDetails['firstName'] . ' ' . $userDetails['lastName'],
                     'time' => time(),
                 ]);
+
                 $this->setHeader("jwt: $jwt");
 
                 $returnData = ['code' => '004', 'result' => 'success'];

@@ -1,18 +1,28 @@
 <?php
-require_once __DIR__ . '/MySQL/Table.php';
 
-$tableObject = new Table('schools', 'educatio_educat');
-echo "<pre>";
-print_r($tableObject);
-die("Test");
+class DeleteLocation extends Microservice
+{
 
-$data = $_POST;
+    public function execute()
+    {
+        $inputObject = new Request();
+        $sessionObject = new Session();
 
-$response = ['status' => 'error', 'data' => [], 'message' => 'Something went wrong.'];
+        $returnData = ['code' => '001', 'result' => 'failure', 'data' => null];
 
-header('Content-Type: application/json');
-if (isset($response['status']) && $response['status'] === 'error') {
-    header('HTTP/1.1 500 Internal Server error');
+        if ($id = $inputObject->issetGet('id', true, false)) {
+
+            $locationObject = new Table('locations');
+
+            $deleteResult = $locationObject->delete('id = "' . $id . '"');
+
+            if ($deleteResult['status'] == 'success') {
+                $returnData = ['code' => '010', 'result' => 'success'];
+            } else {
+                $returnData['code'] = '011';
+            }
+        }
+
+        return $returnData;
+    }
 }
-
-echo json_encode($response);

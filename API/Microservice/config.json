@@ -7,7 +7,10 @@
         "005": "Invalid credentials",
         "006": "Location has been save successfully",
         "007": "Something went wrong, while saving your location",
-        "008": "Saved locations"
+        "008": "Saved locations",
+        "009": "Valid JWT",
+        "010": "Location has been deleted successfully",
+        "011": "Something went wrong, while deleting location"
     },
     "microservice": {
         "Register": {
@@ -20,6 +23,12 @@
             "JWTCheck": true
         },
         "GetAllLocation": {
+            "JWTCheck": true
+        },
+        "ValidateJWT": {
+            "JWTCheck": true
+        },
+        "DeleteLocation": {
             "JWTCheck": true
         }
     }

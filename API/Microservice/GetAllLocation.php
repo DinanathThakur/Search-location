@@ -13,8 +13,8 @@ class GetAllLocation extends Microservice
         $page = ($inputObject->isset('start', true) ? ($inputObject->get('start') / $limit) + 1 : 1);
 
         $options['where'] = 'userID = "' . $sessionObject->getSessionDetails('userID') . '"';
-        $options['limit'] = (int) $limit;
-        $options['offset'] = (int) (($page - 1) * $limit);
+        $options['limit'] = (int)$limit;
+        $options['offset'] = (int)(($page - 1) * $limit);
 
         $locationObject = new Table('locations');
         $locations = $locationObject->getAll($options)['data'];
@@ -27,15 +27,15 @@ class GetAllLocation extends Microservice
                 $dataForTable[] = [
                     'name' => $location['name'],
                     'description' => $location['description'],
-                    'latitude' => $location['latitude'],
-                    'longitude' => $location['longitude'],
+                    'lat' => $location['lat'],
+                    'lng' => $location['lng'],
                     'createdAt' => $location['createdAt'],
-                    'action' => '<span class="btn btn-sm"><i class="glyphicon glyphicon-trash"></i></span>',
+                    'action' => '<span class="btn btn-sm delete-location" data-id="' . $location['id'] . '"><i class="glyphicon glyphicon-trash"></i></span>',
                 ];
             }
         }
 
-        $response = ['recordsTotal' => $recordsTotal, 'recordsFiltered' => $filteredRecordCount, 'draw' => (int) $postData['draw'], 'data' => $dataForTable];
+        $response = ['recordsTotal' => $recordsTotal, 'recordsFiltered' => $filteredRecordCount, 'draw' => (int)$inputObject->get('draw'), 'data' => $dataForTable];
 
         $this->setResponse($response);
     }

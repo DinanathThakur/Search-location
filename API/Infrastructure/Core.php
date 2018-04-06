@@ -16,14 +16,11 @@ class Core
     public $apiName = null;
     private $microserviceConfig = null;
     private $apiConfig = null;
-    private $headers = null;
     private $jwt = null;
 
     public function __construct()
     {
         $apiName = isset($_GET['apiName']) ? $_GET['apiName'] : null;
-
-        $this->headers = getallheaders();
 
         if ($apiName) {
 
@@ -48,17 +45,17 @@ class Core
 
                         $this->setResponse($apiObject->execute());
                     } else {
-                        $this->throughError('Invalid header', 401);
+                        $this->throwError('Invalid header', 401);
                     }
 
                 } else {
-                    $this->throughError('Invalid API call', 404);
+                    $this->throwError('Invalid API call', 404);
                 }
             } else {
-                $this->throughError('Config file missing', 404);
+                $this->throwError('Config file missing', 404);
             }
         } else {
-            $this->throughError('Invalid API call', 404);
+            $this->throwError('Invalid API call', 404);
         }
 
     }
@@ -68,20 +65,14 @@ class Core
 
         $returnResult = true;
         if (isset($this->apiConfig['JWTCheck']) && $this->apiConfig['JWTCheck']) {
-            if (isset($this->headers['jwt']) && $this->headers['jwt'] != '') {
-
-                $sessionObject = new Session($this->headers['jwt']);
-
-                $returnResult = $sessionObject->checkJWT();
-            } else {
-                $this->throughError('JWT not passed', 401);
-            }
+            $sessionObject = new Session();
+            $returnResult = $sessionObject->checkJWT();
         }
 
         return $returnResult;
     }
 
-    private function throughError($message, $httpResponseCode = null)
+    private function throwError($message, $httpResponseCode = null)
     {
         if ($httpResponseCode) {
             $this->setHTTPResponseCode($httpResponseCode);

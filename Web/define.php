@@ -1,11 +1,5 @@
 <?php
 
-define('MICROSERVICE_PATH', _definingFolder('Microservice'));
-define('COMMON_PATH', _definingFolder('Common'));
-
-function _definingFolder($folderName)
-{
-    return (($_temp = realpath($folderName)) !== false)
-    ? $_temp . DIRECTORY_SEPARATOR
-    : strtr(rtrim($folderName, '/\\'), '/\\', DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
-}
+define('BASE_URL', 'http://localhost/search-location/Web/');
+define('API_BASE_URL', 'http://localhost/search-location/API/');
+define('GOOGLE_KEY', 'AIzaSyBLJ7aZn2_zcT5ajp0_uyq396y7xxEqWa8');

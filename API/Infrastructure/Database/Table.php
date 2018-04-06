@@ -136,10 +136,9 @@ class Table extends DB
         try {
             $query = "DELETE FROM $this->tableName WHERE $where";
             $result = mysqli_query($this->connection, $query);
-            $deleteResult = mysqli_fetch_assoc($result);
             mysqli_free_result($result);
 
-            if ($deleteResult) {
+            if ($result) {
                 $response = ['status' => 'success', 'msg' => 'Record has been deleted successfully.'];
             } else {
                 $response = ['status' => 'error', 'msg' => "Error deleting record: " . mysqli_error($this->connection)];
