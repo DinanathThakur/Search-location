@@ -1,6 +1,5 @@
 <?php
 
-define('BASE_URL', 'http://localhost/');
 define('INFRASTRUCTURE_PATH', _definingFolder('Infrastructure'));
 define('MICROSERVICE_PATH', _definingFolder('Microservice'));
 
