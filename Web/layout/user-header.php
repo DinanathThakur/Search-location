@@ -1,5 +1,5 @@
 <?php
-include_once  'validateJWT.php';
+include_once BASE_PATH . DIRECTORY_SEPARATOR . 'validateJWT.php';
 
 ?>
 <!DOCTYPE html>
@@ -11,9 +11,9 @@ include_once  'validateJWT.php';
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        var API_BASE_URL = '<?php echo API_BASE_URL;?>';
-        var BASE_URL = '<?php echo BASE_URL;?>';
-        var ASSET_URL = '<?php echo BASE_URL;?>assets/';
+        var API_BASE_URL = '<?php echo API_BASE_URL; ?>';
+        var BASE_URL = '<?php echo BASE_URL; ?>';
+        var ASSET_URL = '<?php echo BASE_URL; ?>assets/';
     </script>
     <script src="<?php echo BASE_URL; ?>assets/main.js"></script>
     <script src="<?php echo BASE_URL; ?>assets/blockUI.js"></script>
