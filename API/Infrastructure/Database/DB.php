@@ -8,10 +8,9 @@ class DB
     public function __construct()
     {
 
-        error_reporting(0);
         header('Content-Type: application/json');
 
-        $config = json_decode(file_get_contents( '/config.json'), true);
+        $config = json_decode(file_get_contents(INFRASTRUCTURE_PATH . 'Database' . DIRECTORY_SEPARATOR . 'config.json'), true);
 
         $this->connection = mysqli_connect($config['host'], $config['userName'], $config['password'], $config['DB']);
 

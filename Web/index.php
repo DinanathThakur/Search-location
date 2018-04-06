@@ -1,4 +1,4 @@
-<?php include_once  '/layout/header.php'; ?>
+<?php include_once  'layout/header.php'; ?>
     <link href="<?php echo BASE_URL ?>/assets/home-style.css" rel="stylesheet">
     <div class="container">
         <div class="row">
@@ -161,4 +161,4 @@
 
     </script>
 
-<?php include_once  '/layout/footer.php'; ?>
+<?php include_once  'layout/footer.php'; ?>

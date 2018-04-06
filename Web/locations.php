@@ -1,4 +1,4 @@
-<?php include_once  '/layout/user-header.php'; ?>
+<?php include_once  'layout/user-header.php'; ?>
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css">
 
@@ -269,4 +269,4 @@
         src="http://maps.googleapis.com/maps/api/js?key=<?php echo GOOGLE_KEY; ?>&libraries=places&callback=initAutocomplete"
         type="text/javascript"></script>
 
-<?php include_once  '/layout/footer.php'; ?>
+<?php include_once  'layout/footer.php'; ?>
