@@ -1,18 +1,42 @@
 <?php
-require_once __DIR__ . '/DB/Table.php';
 
-$userObject = new Table('users');
-echo "<pre>";
-print_r($userObject);
-die("Test");
+class Login extends Microservice
+{
 
-$data = $_POST;
+    public function execute()
+    {
+        $inputObject = new Request();
+        $sessionObject = new Session();
 
-$response = ['status' => 'error', 'data' => [], 'message' => 'Something went wrong.'];
+        $returnData = ['code' => '001', 'result' => 'failure', 'data' => null];
 
-header('Content-Type: application/json');
-if (isset($response['status']) && $response['status'] === 'error') {
-    header('HTTP/1.1 500 Internal Server error');
+        if (($email = $inputObject->issetGet('email', true, false)) &&
+            ($password = $inputObject->issetGet('password', true, false))) {
+
+            $userObject = new Table('users');
+
+            $where = 'email = "' . $email . '" AND password = "' . md5($password) . '"';
+
+            $userResponse = $userObject->get(['where' => $where]);
+
+            if ($userResponse['status'] == 'success') {
+                $userDetails = $userResponse['data'];
+
+                $jwt = $sessionObject->encodeJWT([
+                    'userID' => $userDetails['data'],
+                    'emailID' => $userDetails['email'],
+                    'name' => $userDetails['firstName'] . ' ' . $userDetails['lastName'],
+                    'time' => time(),
+                ]);
+                $this->setHeader("jwt: $jwt");
+
+                $returnData = ['code' => '004', 'result' => 'success'];
+            } else {
+                $returnData['code'] = '005';
+            }
+            $returnData['data'] = $userResponse['data'];
+        }
+
+        return $returnData;
+    }
 }
-
-echo json_encode($response);

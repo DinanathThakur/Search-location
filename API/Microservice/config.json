@@ -1,0 +1,26 @@
+{
+    "responseCodes": {
+        "001": "Minssing parameter",
+        "002": "Registration successfully done",
+        "003": "Something went wrong, while registering user",
+        "004": "Logged in successfully",
+        "005": "Invalid credentials",
+        "006": "Location has been save successfully",
+        "007": "Something went wrong, while saving your location",
+        "008": "Saved locations"
+    },
+    "microservice": {
+        "Register": {
+            "JWTCheck": false
+        },
+        "Login": {
+            "JWTCheck": false
+        },
+        "SaveLocation": {
+            "JWTCheck": true
+        },
+        "GetAllLocation": {
+            "JWTCheck": true
+        }
+    }
+}

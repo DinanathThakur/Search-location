@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/DB.php';
-
 class Table extends DB
 {
 
@@ -72,6 +70,20 @@ class Table extends DB
             $data = mysqli_fetch_assoc($result);
             mysqli_free_result($result);
             $response = ['status' => 'success', 'msg' => 'Record fetched successfully.', 'data' => $data];
+        } catch (Exception $exc) {
+            $response = ['status' => 'error', 'msg' => "Something went wrong: " . $exc->getTraceAsString()];
+        }
+        return $response;
+    }
+
+    public function getCount($where = 1)
+    {
+        try {
+            $sql = "SELECT COUNT(*) as count FROM $this->tableName WHERE $where";
+            $result = mysqli_query($this->connection, $sql);
+            $data = mysqli_fetch_assoc($result);
+            mysqli_free_result($result);
+            $response = ['status' => 'success', 'msg' => 'Record fetched successfully.', 'data' => $data['count']];
         } catch (Exception $exc) {
             $response = ['status' => 'error', 'msg' => "Something went wrong: " . $exc->getTraceAsString()];
         }

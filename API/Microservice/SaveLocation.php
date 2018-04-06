@@ -1,19 +1,40 @@
 <?php
-require_once __DIR__ . '/checkJWT.php';
-require_once __DIR__ . '/DB/Table.php';
 
-// $tableObject = new Table('schools', 'educatio_educat');
-// echo "<pre>";
-// print_r($tableObject);
-// die("Test");
+class SaveLocation extends Microservice
+{
 
-// $data = $_POST;
+    public function execute()
+    {
+        $inputObject = new Request();
+        $sessionObject = new Session();
 
-// $response = ['status' => 'error', 'data' => [], 'message' => 'Something went wrong.'];
+        $returnData = ['code' => '001', 'result' => 'failure', 'data' => null];
 
-// header('Content-Type: application/json');
-// if (isset($response['status']) && $response['status'] === 'error') {
-//     header('HTTP/1.1 500 Internal Server error');
-// }
+        if (($name = $inputObject->issetGet('name', true, false)) &&
+            ($description = $inputObject->issetGet('description', true, false)) &&
+            ($lat = $inputObject->issetGet('lat', true, false)) &&
+            ($lng = $inputObject->issetGet('lng', true, false))) {
 
-// echo json_encode($response);
+            $locationObject = new Table('locations');
+
+            $locationDetails = [
+                'userID' => $sessionObject->getSessionDetails('userID'),
+                'name' => $name,
+                'description' => $description,
+                'lat' => $lat,
+                'lng' => $lng,
+            ];
+
+            $insertResult = $locationObject->insert($locationDetails);
+
+            if ($insertResult['status'] == 'success') {
+                $returnData = ['code' => '006', 'result' => 'success'];
+            } else {
+                $returnData['code'] = '007';
+            }
+            $returnData['data'] = $insertResult['data'];
+        }
+
+        return $returnData;
+    }
+}
