@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(-1);
 define('BASE_PATH', realpath('.'));
 define('BASE_URL', 'http://localhost/search-location/Web/');
 define('API_BASE_URL', 'http://localhost/search-location/API/');
