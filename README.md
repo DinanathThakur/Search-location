@@ -1,2 +1,2 @@
-# search-location
+# Search-location
 Google place search api integration in php 
