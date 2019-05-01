@@ -3,7 +3,7 @@
 define('BASE_PATH', realpath('.'));
 define('BASE_URL', 'http://localhost/search-location/Web/');
 define('API_BASE_URL', 'http://localhost/search-location/API/');
-define('GOOGLE_KEY', 'AIzaSyBLJ7aZn2_zcT5ajp0_uyq396y7xxEqWa8');
+define('GOOGLE_KEY', 'google key goes here');
 
 define('LAYOUT_PATH', _definingFolder('layout'));
 
